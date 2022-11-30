@@ -4,6 +4,11 @@
             "cwd": "/home/maxime/Documents/UCL/BAC/BAC_3/Q5/LINFO1252/Projet",
             "binaryPath": "/home/maxime/Documents/UCL/BAC/BAC_3/Q5/LINFO1252/Projet/philosophe",
             "binaryArgs": []
+        },
+        {
+            "cwd": "/home/maxime/Documents/UCL/BAC/BAC_3/Q5/LINFO1252/Projet",
+            "binaryPath": "/home/maxime/Documents/UCL/BAC/BAC_3/Q5/LINFO1252/Projet/philosophe.exe",
+            "binaryArgs": []
         }
     ]
 }

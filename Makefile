@@ -2,7 +2,7 @@ CC=gcc
 CFLAGS= -Wall -Werror -g 
 LIBS=-lcunit -lpthread -lm
 INCLUDE_HEADERS_DIRECTORY=-Iheaders
-SRC=src/stack.c src/producteurs-consomateur.c src/philosophe.c
+SRC=src/*.c
 OBJ=stack.o
 
 main:
@@ -15,6 +15,11 @@ main:
 
 	@$(CC) -o producteurs-consomateur.exe $(OBJ) producteurs-consomateur.o
 	@echo "\n Successfully compiled producteurs-consomateur.c. \n"
+
+	@$(CC) -o lecteurs-ecrivains.exe lecteurs-ecrivains.o $(CFLAGS)
+	@echo "\n Successfully compiled lecteurs-ecrivains.c. \n"
+
+
 
 clean:
 	@rm -f *.o

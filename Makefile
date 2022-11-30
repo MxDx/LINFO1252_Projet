@@ -4,16 +4,16 @@ LIBS=-lcunit -lpthread -lm
 INCLUDE_HEADERS_DIRECTORY=-Iheaders
 SRC=src/stack.c src/producteurs-consomateur.c src/philosophe.c
 OBJ=stack.o
-LIB_PATH=-L /bin
 
 main:
+	@make clean
 	@$(CC) -c $(SRC) #$(CFLAGS)
 	@echo "\n Successfully compiled all source files. \n" 
 	
-	@$(CC) philosophe.o -o philosophe.exe $(CFLAGS)
+	@$(CC) -o philosophe.exe philosophe.o $(CFLAGS)
 	@echo "\n Successfully compiled philosophe.c. \n"
 
-	@$(CC) producteurs-consomateur.o -o producteurs-consomateur.exe $(OBJ) 
+	@$(CC) -o producteurs-consomateur.exe $(OBJ) producteurs-consomateur.o
 	@echo "\n Successfully compiled producteurs-consomateur.c. \n"
 
 clean:
@@ -21,11 +21,12 @@ clean:
 	@rm -f *.exe
 
 debug: 
-	@g++ -c $(SRC) #$(CFLAGS)
+	@make clean
+	@g++ -g -c $(SRC) #$(CFLAGS)
 	@echo "\n Successfully compiled all source files. \n" 
 	
-	@g++ -o philosophe.exe philosophe.o $(CFLAGS)
+	@g++ -g -o philosophe.exe philosophe.o $(CFLAGS)
 	@echo "\n Successfully compiled philosophe.c (DEBUG). \n"
 
-	@g++ -o producteurs-consomateur.exe $(OBJ) producteurs-consomateur.o
+	@g++ -g -o producteurs-consomateur.exe $(OBJ) producteurs-consomateur.o
 	@echo "\n Successfully compiled producteurs-consomateur.c (DEBUG). \n"

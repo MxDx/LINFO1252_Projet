@@ -1,18 +1,17 @@
-cd "Modest"
+make > out.log 2> err.log
 
 for n in  {1..7}
 do 
-    echo -n "$n threads;" >> test.csv
+    echo -n "$n threads;" >> test_philosophe.csv
 done
-echo  "8 threads;" >> test.csv
+echo  "8 threads;" >> test_philosophe.csv
 
 for i in  1 2 3 4 5
 do 
     for j in 1 2 3 4 5 6 7 8
     do
-        make -i -s clean
-        echo -n $(/usr/bin/time -f "%e" make -s -j $j 2>&1) >> test.csv 
-        echo -n ";" >> test.csv   
+        echo -n $(/usr/bin/time -f "%e" ./philosophe.exe $j 2>&1) >> test_philosophe.csv 
+        echo -n ";" >> test_philosophe.csv   
     done
-    echo "" >> test.csv
+    echo "" >> test_philosophe.csv
 done

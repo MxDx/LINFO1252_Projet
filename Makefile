@@ -19,11 +19,14 @@ main:
 	@$(CC) -o lecteurs-ecrivains.exe lecteurs-ecrivains.o $(CFLAGS)
 	@echo "\n Successfully compiled lecteurs-ecrivains.c. \n"
 
-
-
 clean:
 	@rm -f *.o
 	@rm -f *.exe
+	@rm -f *.log
+
+test:
+	@bash script.sh
+	@make clean
 
 debug: 
 	@make clean

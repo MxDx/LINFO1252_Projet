@@ -2,28 +2,30 @@ CC=gcc
 CFLAGS= -Wall -Werror -g 
 LIBS=-lcunit -lpthread -lm
 INCLUDE_HEADERS_DIRECTORY=-Iheaders
-SRC=src/stack.c
+SRC=src/stack.c src/producteurs-consomateur.c src/philosophe.c
 OBJ=stack.o
+LIB_PATH=-L /bin
 
 main:
-	@$(CC) -c $(SRC) $(CFLAGS)
+	@$(CC) -c $(SRC) #$(CFLAGS)
 	@echo "\n Successfully compiled all source files. \n" 
 	
-	@$(CC) src/philosophe.c -o philosophe $(CFLAGS)
+	@$(CC) philosophe.o -o philosophe.exe $(CFLAGS)
 	@echo "\n Successfully compiled philosophe.c. \n"
 
-	@$(CC) src/producteurs-consomateur.c -o producteurs-consomateur $(OBJ) 
+	@$(CC) producteurs-consomateur.o -o producteurs-consomateur.exe $(OBJ) 
+	@echo "\n Successfully compiled producteurs-consomateur.c. \n"
 
 clean:
 	@rm -f *.o
-	@rm philosophe
-	@rm producteurs-consomateur
+	@rm -f *.exe
 
 debug: 
-	@$(CC) -c $(SRC) $(CFLAGS)
+	@g++ -c $(SRC) #$(CFLAGS)
 	@echo "\n Successfully compiled all source files. \n" 
 	
-	@g++ src/philosophe.c -o philosophe $(CFLAGS)
-	@echo "\n Successfully compiled philosophe.c. \n"
+	@g++ -o philosophe.exe philosophe.o $(CFLAGS)
+	@echo "\n Successfully compiled philosophe.c (DEBUG). \n"
 
-	@g++ src/producteurs-consomateur.c -o producteurs-consomateur $(OBJ) # $(CFLAGS)
+	@g++ -o producteurs-consomateur.exe $(OBJ) producteurs-consomateur.o
+	@echo "\n Successfully compiled producteurs-consomateur.c (DEBUG). \n"

@@ -7,7 +7,7 @@ void init_stack(stack_t* stack) {
 }
 
 void push(stack_t* stack, void* data) {
-    node_t* node = malloc(sizeof(node_t));
+    node_t* node = (node_t*) malloc(sizeof(node_t));
     if (node == NULL) {
         perror("Memory allocation in push failed.");
         exit(EXIT_FAILURE);

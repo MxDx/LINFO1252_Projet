@@ -8,7 +8,7 @@
             "name": "Producteurs-consomateur",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/producteurs-consomateur",
+            "program": "${workspaceFolder}/producteurs-consomateur.exe",
             "args": ["2", "2"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",

@@ -23,10 +23,10 @@ clean:
 	@rm -f *.o
 	@rm -f *.exe
 	@rm -f *.log
+	@rm -f *.csv
 
 test:
 	@bash script.sh
-	@make clean
 
 debug: 
 	@make clean

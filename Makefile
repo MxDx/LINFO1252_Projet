@@ -1,22 +1,22 @@
 CC=gcc
 CFLAGS= -Wall -Werror -g 
-LIBS=-lcunit -lpthread -lm
+LIBS= -lpthread -lm
 INCLUDE_HEADERS_DIRECTORY=-Iheaders
 SRC=src/*.c
 OBJ=stack.o
 
 main:
 	@make clean
-	@$(CC) -c $(SRC) #$(CFLAGS)
+	@$(CC) -c $(SRC) $(LIBS) #$(CFLAGS)
 	@echo "\n Successfully compiled all source files. \n" 
 	
-	@$(CC) -o philosophe.exe philosophe.o $(CFLAGS)
+	@$(CC) -o philosophe.exe philosophe.o $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
 	@echo "\n Successfully compiled philosophe.c. \n"
 
-	@$(CC) -o producteurs-consomateur.exe $(OBJ) producteurs-consomateur.o
+	@$(CC) -o producteurs-consomateur.exe $(OBJ) producteurs-consomateur.o $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
 	@echo "\n Successfully compiled producteurs-consomateur.c. \n"
 
-	@$(CC) -o lecteurs-ecrivains.exe lecteurs-ecrivains.o $(CFLAGS)
+	@$(CC) -o lecteurs-ecrivains.exe lecteurs-ecrivains.o $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
 	@echo "\n Successfully compiled lecteurs-ecrivains.c. \n"
 
 clean:
@@ -26,11 +26,11 @@ clean:
 	@rm -f *.csv
 
 test:
-	@bash script.sh
+	@bash experiments.sh
 
 debug: 
 	@make clean
-	@g++ -g -c $(SRC) #$(CFLAGS)
+	@g++ -g -c $(SRC) $(LIBS) #$(CFLAGS)
 	@echo "\n Successfully compiled all source files. \n" 
 	
 	@g++ -g -o philosophe.exe philosophe.o $(CFLAGS)
@@ -38,3 +38,9 @@ debug:
 
 	@g++ -g -o producteurs-consomateur.exe $(OBJ) producteurs-consomateur.o
 	@echo "\n Successfully compiled producteurs-consomateur.c (DEBUG). \n"
+
+zip:
+	@make clean
+	@cd ..
+	@zip -r project.zip ./*
+	@echo "\n Successfully zipped the project. \n"

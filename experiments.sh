@@ -1,8 +1,5 @@
-nbthread=3
+nbthread=64
 two=2
-
-make > out.log 2> err.log
-
 
 #Philosophe
 for ((n=1;n<$nbthread;n++))
@@ -21,6 +18,8 @@ do
     echo "" >> test_philosophe.csv
 done
 
+cat test_philosophe.csv
+
 #Producteur Consommateur
 for ((n=2;n<$nbthread;n++))
 do 
@@ -30,7 +29,7 @@ echo  "$nbthread threads;" >> test_producteurs_consommateur.csv
 
 for ((i=0;i<5;i++))
 do 
-    for ((j=1; j<=$nbthread; j++))
+    for ((j=2; j<=$nbthread; j++))
     do
         #Create a variable prod wich equals to j / 2
         prod=$(($j / $two))
@@ -41,6 +40,8 @@ do
     done
     echo "" >> test_producteurs_consommateur.csv
 done
+
+cat test_producteurs_consommateur.csv
 
 #Lecteurs Ecrivains
 for ((n=2;n<$nbthread;n++))
@@ -60,3 +61,5 @@ do
     done
     echo "" >> test_lecteurs-Ecrivains.csv
 done
+
+cat test_lecteurs-Ecrivains.csv

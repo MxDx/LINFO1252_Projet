@@ -24,6 +24,8 @@ clean:
 	@rm -f *.exe
 	@rm -f *.log
 	@rm -f *.csv
+	@rm -f *.zip
+	@echo "\n Successfully cleaned all files. \n"
 
 test:
 	@bash experiments.sh

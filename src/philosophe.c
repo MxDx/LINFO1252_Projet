@@ -19,7 +19,7 @@ void* philosophe ( void* arg )
     right = (left + 1) % *nb_phil;
   }
   int i = 0;
-  while(i < 100000) {
+  while(i < 100000000) { // Sur ingi c'est 100_000_000
     // philosophe pense
     if(left<right) {
       pthread_mutex_lock(&baguette[left]);
@@ -38,6 +38,10 @@ void* philosophe ( void* arg )
 
 int main(int argc, char *argv[])
 {
+    if (argc != 2) {
+      printf("Number of philosophe not given\n");
+      return 1;
+    }
     nb_phil = (int *) malloc(sizeof(int));
     *nb_phil =  atoi(argv[1]);
 

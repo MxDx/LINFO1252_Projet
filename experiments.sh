@@ -55,7 +55,7 @@ do
     for ((j=2; j<=$nbthread; j++))
     do
         Ecrivains=$(($j / $two))
-        Lecteurs=$(($j - $prod))
+        Lecteurs=$(($j - $Ecrivains))
         echo -n $(/usr/bin/time -f "%e" ./lecteurs-ecrivains.exe $Lecteurs $Ecrivains 2>&1) >> test_lecteurs-Ecrivains.csv 
         echo -n ";" >> test_lecteurs-Ecrivains.csv   
     done

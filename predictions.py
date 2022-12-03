@@ -69,21 +69,21 @@ if __name__ == '__main__':
     philosophe_raw = pd.read_csv("result_ingi/test_philosophe.csv", sep=';')
     philosophe_raw = philosophe_raw.iloc[:,:-1]
     philosophe = philosophe_raw.mean().to_frame(name="mean")
-    philosophe['nb_thread'] = range(1,17)
+    philosophe['nb_thread'] = range(1,65)
     
     time_phil = prediction_linear(philosophe, NBTHREAD, 1)
     
-    producteurs_consomateurs_raw = pd.read_csv("result_ingi/test_producteurs-consomateur.csv", sep=';')
+    producteurs_consomateurs_raw = pd.read_csv("result_ingi/Better_prodcons.txt", sep=';')
     producteurs_consomateurs_raw = producteurs_consomateurs_raw.iloc[:,:-1]
     producteurs_consomateurs = producteurs_consomateurs_raw.mean().to_frame(name="mean")
-    producteurs_consomateurs['nb_thread'] = range(2,17)
+    producteurs_consomateurs['nb_thread'] = range(2,65)
     
     time_prod_cons = prediction_log(producteurs_consomateurs, NBTHREAD, 2)
     
-    lecteurs_ecrivains_raw = pd.read_csv("result_ingi/test_lecteurs-ecrivains.csv", sep=';')
+    lecteurs_ecrivains_raw = pd.read_csv("result_ingi/Better_lecteur_écrivains.txt", sep=';')
     lecteurs_ecrivains_raw = lecteurs_ecrivains_raw.iloc[:,:-1]
     lecteurs_ecrivains = lecteurs_ecrivains_raw.mean().to_frame(name="mean")
-    lecteurs_ecrivains['nb_thread'] = range(2,17)
+    lecteurs_ecrivains['nb_thread'] = range(2,65)
     
     time_lect_ecriv = prediction_log(lecteurs_ecrivains, NBTHREAD, 2)
     

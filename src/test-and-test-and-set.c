@@ -1,5 +1,4 @@
 #include "../headers/test-and-set.h"
-#include <stdio.h>
 
 int lock(int *tatas) {
     int ret;
@@ -32,10 +31,4 @@ int unlock(int* tatas) {
         :"a"(0), "m"(*tatas));
 
     return ret;
-}
-
-int main() {
-
-
-    return 0;
 }

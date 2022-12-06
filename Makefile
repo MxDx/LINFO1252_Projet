@@ -3,11 +3,13 @@ CFLAGS= -Wall -Werror -g
 LIBS= -lpthread -lm
 INCLUDE_HEADERS_DIRECTORY=-Iheaders
 SRC=src/*.c
+TST=test/*.c
 OBJ=stack.o
 
 main:
 	@make clean
 	@$(CC) -c $(SRC) $(LIBS) #$(CFLAGS)
+	@$(CC) -c $(TST) $(LIBS) #$(CFLAGS)
 	@echo "\n Successfully compiled all source files. \n" 
 	
 	@$(CC) -o philosophe.exe philosophe.o $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
@@ -18,6 +20,9 @@ main:
 
 	@$(CC) -o lecteurs-ecrivains.exe lecteurs-ecrivains.o $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
 	@echo "\n Successfully compiled lecteurs-ecrivains.c. \n"
+
+	@$(CC) -o test_tas.exe test_tas.o test-and-set.o $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
+	@echo "\n Successfully compiled test_tas.c. \n"
 
 clean:
 	@rm -f *.o

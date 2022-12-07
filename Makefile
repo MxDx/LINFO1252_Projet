@@ -4,7 +4,7 @@ LIBS= -lpthread -lm
 INCLUDE_HEADERS_DIRECTORY=-Iheaders
 SRC=src/*.c
 TST=test/*.c
-OBJ=stack.o
+OBJ=stack.o test-and-test-and-set.o
 
 main:
 	@make clean

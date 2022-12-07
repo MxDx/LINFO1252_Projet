@@ -71,7 +71,7 @@ if __name__ == '__main__':
     philosophe = philosophe_raw.mean().to_frame(name="mean")
     philosophe['nb_thread'] = range(1,65)
     
-    time_phil = prediction_linear(philosophe, NBTHREAD, 1)
+    time_phil = prediction_log(philosophe, NBTHREAD, 1)
     
     producteurs_consomateurs_raw = pd.read_csv("result_ingi/Better_prodcons.txt", sep=';')
     producteurs_consomateurs_raw = producteurs_consomateurs_raw.iloc[:,:-1]

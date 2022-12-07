@@ -1,4 +1,4 @@
-#include "../headers/test-and-set.h"
+#include "../headers/test-and-test-and-set.h"
 
 int lock(int *tatas) {
     int ret;

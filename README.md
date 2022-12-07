@@ -12,6 +12,16 @@ Notre programme résoud trois problèmes connue de programmation multi-threadé 
 
 Le projet est composé de 3 dossiers :
 - src : Contient deux implémentation différente des 3 problèmes, et le fichier stack.c qui implémente la stack nescessaire pour les autres problèmes.
-    - src/Posix : contient les programmes multi-threadé (Philosophes, producteurs-consomateurs, lecteurs-ecrivains)
-    - src/attente_active : contient les programmes multi-threadé avec notre methode d'attente active (Philosophes, producteurs-consomateurs, lecteurs-ecrivains)
+    - src/Posix : Contient les programmes multi-threadé (Philosophes, producteurs-consomateurs, lecteurs-ecrivains)
+    - src/attente_active : Contient les programmes multi-threadé avec notre methode d'attente active (Philosophes, producteurs-consomateurs, lecteurs-ecrivains)
+- headers : Contient les différents headers du projet
+- attente_active : Contient nos differentes implementation de methode d'attente active 
 
+## Comment compiler et executer le projet :
+
+Pour compiler le projet, il faut être à la racine du projet et executer la commande suivante : 
+> make
+> bash experiments.sh #Pour tous les csv du projet
+> ./*.exe #Remplacer le * par le nom du programmes
+
+Tous les programmes pouvant être executer sont les fichier terminant par .exe. 

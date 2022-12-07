@@ -5,10 +5,10 @@
 
 typedef struct sem_s {
     int tatas;
-    int count;
+    int counter;
 } sem_s;
 
-void sem_init(sem_s* sem, int count);
+void sem_init(sem_s* sem, int counter);
 
 void sem_wait(sem_s* sem);
 

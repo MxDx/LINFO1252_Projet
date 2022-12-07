@@ -1,11 +1,5 @@
+#include "../headers/semaphore.h"
 
-
-
-// Semaphore structure
-typedef struct sem_s {
-    int tatas;
-    int counter;
-} sem_s;
 
 // Initialize semaphore
 void sem_init(sem_s *sem, unsigned int val) {

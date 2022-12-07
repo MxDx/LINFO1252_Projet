@@ -14,8 +14,6 @@ if __name__ == '__main__':
     philosophe = pd.read_csv("test_philosophe.csv", sep=';')
 
     philosophe = philosophe.iloc[:,:-1]
-    dic = {'1 threads': 1,'2 threads': 2,'4 threads': 4,'8 threads': 8,'16 threads': 16,'32 threads': 32,'64 threads': 64}
-    philosophe = philosophe.rename(columns=dic)
 
     philosophe_new = philosophe.mean().to_frame(name="mean")
     philosophe_new["std"] = philosophe.std().to_list()
@@ -38,8 +36,6 @@ if __name__ == '__main__':
     philosophe_AA = pd.read_csv("test_philosophe_AA.csv", sep=';')
 
     philosophe_AA = philosophe_AA.iloc[:,:-1]
-    dic = {'1 threads': 1,'2 threads': 2,'4 threads': 4,'8 threads': 8,'16 threads': 16,'32 threads': 32,'64 threads': 64}
-    philosophe_AA = philosophe_AA.rename(columns=dic)
 
     philosophe_AA_new = philosophe_AA.mean().to_frame(name="mean")
     philosophe_AA_new["std"] = philosophe_AA.std().to_list()

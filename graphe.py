@@ -272,7 +272,7 @@ if __name__ == '__main__':
     
     # Plot btatas
     
-    btatas = pd.read_csv("test_tatas.csv", sep=';')
+    btatas = pd.read_csv("test_btatas.csv", sep=';')
     btatas = btatas.iloc[:,:-1]
     btatas_new = btatas.mean().to_frame(name="mean")
     btatas_new['std'] = btatas.std().to_list()

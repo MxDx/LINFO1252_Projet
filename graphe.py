@@ -270,4 +270,19 @@ if __name__ == '__main__':
     plt.show()
     
     
+    # Plot btatas
+    
+    btatas = pd.read_csv("test_tatas.csv", sep=';')
+    btatas = btatas.iloc[:,:-1]
+    btatas_new = btatas.mean().to_frame(name="mean")
+    btatas_new['std'] = btatas.std().to_list()
+    comp_tastatas['mean_btatas'] = btatas_new['mean']
+    comp_tastatas['std_btatas'] = btatas_new['std']
+    
+    fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(15,8))
+    comp_tastatas.plot(y=['mean_tas', 'mean_tatas', 'mean_btatas'], ax=axes, kind='bar', title='Mean', grid=True)
+    axes.set_xlabel("Number of threads")
+    axes.set_ylabel("Temps d'exécution (s)")
+    plt.show()
+    
     

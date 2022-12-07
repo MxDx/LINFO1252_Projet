@@ -20,8 +20,10 @@ Le projet est composé de 3 dossiers :
 ## Comment compiler et executer le projet :
 
 Pour compiler le projet, il faut être à la racine du projet et executer la commande suivante : 
+```bash
 > make
 > bash experiments.sh #Pour tous les csv du projet
 > ./*.exe #Remplacer le * par le nom du programmes
+```
 
 Tous les programmes pouvant être executer sont les fichier terminant par .exe. 

@@ -6,13 +6,13 @@
 
 int tas = 0;
 int* nb_thread;
-int* vmax = 1000;
+int vmax = 1000;
 
 void* thread_func(void* arg) {
     int* nb = (int*) arg;
 
     for (int i = 0; i < *nb; i++) {
-        lock(&tas,vmax);
+        lock(&tas,&vmax);
         for (int j = 0; j < 10000; j++);
         unlock(&tas);
     }

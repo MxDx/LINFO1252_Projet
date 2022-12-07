@@ -1,5 +1,5 @@
 #include <pthread.h>
-#include <semaphore.h>
+#include "../../headers/semaphore.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -11,8 +11,8 @@ On favorise les writer ici
 pthread_mutex_t m_rcount;
 pthread_mutex_t m_wcount;
 
-sem_t wsem; // accès à la wsem
-sem_t rsem; // bloque les lecteurs
+sem_s wsem; // accès à la wsem
+sem_s rsem; // bloque les lecteurs
 
 int readcount=0; // nombre de readers
 int writecount=0; // nombre de writers
@@ -34,7 +34,7 @@ void* writer(void* param) {
         sem_wait(&wsem); // On attend maintenant que tous les reader on finis
 
         global_count++;
-        for(int i=0;i<10000;i++){
+        for(int i=0;i<100000;i++){
             //Sisimulation
         }
 
@@ -66,7 +66,7 @@ void* reader(void* param) {
         pthread_mutex_unlock(&m_rcount);
         sem_post(&rsem); // Libère la sem quand il a finis
 
-        for(int i=0;i<10000;i++){
+        for(int i=0;i<100000;i++){
             //sisimulation
         } 
 
@@ -100,8 +100,8 @@ int main(int argc, char* argv[]) {
     int times_to_run_writer = 640/ *nb_thread_writer;
     int reste_write = 640% *nb_thread_writer + times_to_run_writer;
 
-    sem_init(&wsem, 0, 1);
-    sem_init(&rsem, 0, 1);
+    sem_init(&wsem, 1);
+    sem_init(&rsem, 1);
 
     pthread_t threads_reader[*nb_thread_reader];
     pthread_t threads_writer[*nb_thread_writer];

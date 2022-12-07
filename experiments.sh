@@ -64,3 +64,44 @@ do
 done
 
 cat test_lecteurs-Ecrivains.csv
+
+#TAS
+
+for n in 1 2 4 8 16 32
+do 
+    echo -n "$n threads;" >> test_tas.csv
+done
+echo  "$nbthread threads;" >> test_tas.csv
+
+for ((i=0;i<5;i++))
+do 
+    for j in 1 2 4 8 16 32 64
+    do
+        echo -n $(/usr/bin/time -f "%e" ./test_tas.exe $j 2>&1) >> test_tas.csv 
+        echo -n ";" >> test_tas.csv   
+    done
+    echo "" >> test_tas.csv
+done
+
+cat test_tas.csv
+
+#TATAS
+
+for n in 1 2 4 8 16 32
+do 
+    echo -n "$n threads;" >> test_tatas.csv
+done
+echo  "$nbthread threads;" >> test_tatas.csv
+
+for ((i=0;i<5;i++))
+do 
+    for j in 1 2 4 8 16 32 64
+    do
+        echo -n $(/usr/bin/time -f "%e" ./test_tatas.exe $j 2>&1) >> test_tatas.csv 
+        echo -n ";" >> test_tatas.csv   
+    done
+    echo "" >> test_tatas.csv
+done
+
+cat test_tatas.csv
+

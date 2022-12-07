@@ -13,6 +13,7 @@ void sem_wait(sem_s *sem) {
     sem->counter--;
     unlock(&sem->tatas);
 }
+
 void sem_post(sem_s *sem){
     lock(&sem->tatas);
     sem->counter++;

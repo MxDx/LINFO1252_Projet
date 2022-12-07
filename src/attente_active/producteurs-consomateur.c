@@ -3,11 +3,11 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <unistd.h>
-#include <semaphore.h>
-#include "../headers/stack.h"
+#include "../../headers/semaphore.h"
+#include "../../headers/stack.h"
 
-sem_t* buffer_cons;
-sem_t* buffer_prod;
+sem_s* buffer_cons;
+sem_s* buffer_prod;
 stack_t* stack;
 
 pthread_mutex_t stack_mutex;
@@ -21,7 +21,7 @@ void* productor(void* args) {
         pthread_mutex_lock(&stack_mutex);
         push(stack, (void*) 1);
         pthread_mutex_unlock(&stack_mutex);
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 100000; i++) {
             // pass
         }
         sem_post(buffer_cons);
@@ -42,7 +42,7 @@ void* consumer(void* args) {
         int* res = (int*) pop(stack);
         pthread_mutex_unlock(&stack_mutex);
 
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 100000; i++) {
             // pass
         }
         sem_post(buffer_prod);
@@ -63,8 +63,8 @@ int main(int argc, char* argv[]) {
 
     stack = (stack_t*) malloc(sizeof(stack_t));
     pthread_mutex_init(&stack_mutex, NULL);
-    buffer_prod = (sem_t*) malloc(sizeof(sem_t));
-    buffer_cons = (sem_t*) malloc(sizeof(sem_t)); 
+    buffer_prod = (sem_s*) malloc(sizeof(sem_s));
+    buffer_cons = (sem_s*) malloc(sizeof(sem_s)); 
 
     *nb_thread_cons = atoi(argv[1]);
     *nb_thread_prod = atoi(argv[2]);
@@ -75,8 +75,8 @@ int main(int argc, char* argv[]) {
     int times_to_run_cons = 8192/ *nb_thread_cons;
     int reste_cons = 8192% *nb_thread_cons + times_to_run_cons;
 
-    sem_init(buffer_prod, 0 ,8);
-    sem_init(buffer_cons, 0, 0);
+    sem_init(buffer_prod,8);
+    sem_init(buffer_cons,0);
 
     pthread_t* prod = (pthread_t*) malloc(sizeof(pthread_t) * *nb_thread_prod);
     pthread_t* cons = (pthread_t*) malloc(sizeof(pthread_t) * *nb_thread_cons);

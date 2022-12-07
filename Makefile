@@ -2,14 +2,16 @@ CC=gcc
 CFLAGS= -Wall -Werror -g 
 LIBS= -lpthread -lm
 INCLUDE_HEADERS_DIRECTORY=-Iheaders
-SRC=src/*.c
+SRC=src/*.c src/attente_active/*.c src/Posix/*.c
 TST=test/*.c
+TAS=attente_active/*.c
 OBJ=stack.o test-and-test-and-set.o
 
 main:
 	@make clean
 	@$(CC) -c $(SRC) $(LIBS) #$(CFLAGS)
 	@$(CC) -c $(TST) $(LIBS) #$(CFLAGS)
+	@$(CC) -c $(TAS) $(LIBS) #$(CFLAGS)
 	@echo "\n Successfully compiled all source files. \n" 
 	
 	@$(CC) -o philosophe.exe philosophe.o $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
@@ -23,6 +25,11 @@ main:
 
 	@$(CC) -o test_tas.exe test_tas.o test-and-set.o $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
 	@echo "\n Successfully compiled test_tas.c. \n"
+
+	@$(CC) -o test_tatas.exe test_tatas.o test-and-test-and-set.o $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
+	@echo "\n Successfully compiled test_tatas.c. \n"
+
+
 
 clean:
 	@rm -f *.o

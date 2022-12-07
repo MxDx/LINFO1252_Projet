@@ -6,6 +6,9 @@
 #include "../../headers/semaphore.h"
 #include "../../headers/stack.h"
 
+//Code similaire à celui de src/Posix/producteurs-consomateur.c mais avec les semaphores TATAS et non POSIX pour les semaphores
+// et avec les locks modifiés et non POSIX pour les mutex (voir src/attente_active/lock.c) 
+
 sem_s* buffer_cons;
 sem_s* buffer_prod;
 stack_t* stack;

@@ -6,15 +6,18 @@
 #include <semaphore.h>
 #include "../../headers/stack.h"
 
-sem_t* buffer_cons;
-sem_t* buffer_prod;
+sem_t* buffer_cons; // Semaphore pour les consommateurs
+sem_t* buffer_prod; // Semaphore pour les producteurs
+
+//Utilisation d'une stack pour implémenter le buffer
+
 stack_t* stack;
 
-pthread_mutex_t stack_mutex;
+pthread_mutex_t stack_mutex; // Mutex pour la stack
 
 
 void* productor(void* args) {
-    int counter = 0;
+    int counter = 0; // Compteur pour savoir quand arrêter le thread car cchaque thread fait 8192/nb_thread opérations
     int* times_to_run = (int*) args;
     while (counter < *times_to_run) {
         sem_wait(buffer_prod);
@@ -32,7 +35,7 @@ void* productor(void* args) {
 }
 
 void* consumer(void* args) {
-    int counter = 0;
+    int counter = 0; // Compteur pour savoir quand arrêter le thread car cchaque thread fait 8192/nb_thread opérations
     int* times_to_run = (int*) args;
     int* res = (int*) malloc(sizeof(int));
     while (counter < *times_to_run) {

@@ -1,6 +1,9 @@
 #include "../headers/stack.h"
 #include <stdio.h>
 
+// Implémentation d'une stack pour gérer le buffer du producteurs-consommateurs
+
+
 void init_stack(stack_t* stack) {
     stack->head = NULL;
     stack->size = 0;

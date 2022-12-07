@@ -5,6 +5,9 @@
 #include <unistd.h>
 #include "../../headers/test-and-test-and-set.h"
 
+//Code similaire à celui de src/Posix/philosophe.c mais avec les semaphores TATAS et non POSIX pour les semaphores
+// et avec les locks modifiés et non POSIX pour les mutex (voir src/attente_active/lock.c) 
+
 pthread_t *phil;
 int *baguette;
 int *nb_phil;

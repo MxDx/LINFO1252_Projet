@@ -5,6 +5,10 @@ import scipy.stats as sp
 import statsmodels.api as sm
 import time
 
+#Code supplémentaire qui permet de faire des prédictions quant au temps d'exécution
+
+
+    #Prédictions linéaire
 
 def prediction_linear(data: pd.core.frame.DataFrame, nb_thread: int, start: int):
     Xm = sm.add_constant(data['nb_thread'])
@@ -32,6 +36,8 @@ def prediction_linear(data: pd.core.frame.DataFrame, nb_thread: int, start: int)
     print("======================================================")
     
     return estimated_time_sec, estimated_time
+
+    #Prediction logaritmique
 
 def prediction_log(data: pd.core.frame.DataFrame, nb_thread: int, start: int):
     Xm = sm.add_constant(data['nb_thread'])

@@ -39,6 +39,9 @@ main:
 	@$(CC) -o test_tatas.exe test_tatas.o test-and-test-and-set.o $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
 	@echo "\n Successfully compiled test_tatas.c. \n"
 
+	@$(CC) -o backoff_test_tatas.exe backoff_test_tatas.o backoff-test-and-test-and-set.o $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
+	@echo "\n Successfully compiled backoff_test_tatas.c. \n"
+
 
 clean:
 	@rm -f *.o

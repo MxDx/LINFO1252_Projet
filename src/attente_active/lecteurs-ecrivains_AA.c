@@ -4,6 +4,9 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+//Code similaire à celui de src/Posix/lecteurs-ecrivains.c mais avec les semaphores TATAS et non POSIX pour les semaphores
+// et avec les locks modifiés et non POSIX pour les mutex (voir src/attente_active/lock.c) 
+
 /*
 On favorise les writer ici
 */

@@ -1,15 +1,22 @@
-#include "../headers/test-and-set.h"
+#include <unistd.h>
 
-int lock(int *tatas) {
+int lock(int *tatas, int *vmax) {
     int ret;
     // Inline assembly that sets the value of ret to the current value of tatas,
     // and sets the value of tatas to 1.
-    // while (*tatas == 1);
-    
-    asm("enter:;"
-        "testl %1, %0;"
-        "jnz enter;"
+    int i=1;
+    while (*tatas == 1){
+        if(i^2 >*vmax){
+            sleep(*vmax);
 
+        }
+        else{
+            sleep(i^2);
+            i++;
+        }
+    }
+    
+    asm(
         "atomic:;"
         "xchg %0, %1;"
         "testl %1, %1;"

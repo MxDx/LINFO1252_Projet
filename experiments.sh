@@ -2,7 +2,8 @@ nbthread=64
 two=2
 
 #Philosophe
-for ((n=1;n<$nbthread;n++))
+
+for n in 1 2 4 8 16 32
 do 
     echo -n "$n threads;" >> test_philosophe.csv
 done
@@ -10,7 +11,7 @@ echo  "$nbthread threads;" >> test_philosophe.csv
 
 for ((i=0;i<5;i++))
 do 
-    for ((j=1;j<=$nbthread;j++))
+    for j in 1 2 4 8 16 32 64
     do
         echo -n $(/usr/bin/time -f "%e" ./philosophe.exe $j 2>&1) >> test_philosophe.csv 
         echo -n ";" >> test_philosophe.csv   
@@ -21,7 +22,7 @@ done
 cat test_philosophe.csv
 
 #Producteur Consommateur
-for ((n=2;n<$nbthread;n++))
+for n in 2 4 8 16 32
 do 
     echo -n "$n threads;" >> test_producteurs_consommateur.csv
 done
@@ -29,7 +30,7 @@ echo  "$nbthread threads;" >> test_producteurs_consommateur.csv
 
 for ((i=0;i<5;i++))
 do 
-    for ((j=2; j<=$nbthread; j++))
+    for j in 2 4 8 16 32 64
     do
         #Create a variable prod wich equals to j / 2
         prod=$(($j / $two))
@@ -44,7 +45,7 @@ done
 cat test_producteurs_consommateur.csv
 
 #Lecteurs Ecrivains
-for ((n=2;n<$nbthread;n++))
+for n in 2 4 8 16 32
 do 
     echo -n "$n threads;" >> test_lecteurs-Ecrivains.csv
 done
@@ -52,7 +53,7 @@ echo  "$nbthread threads;" >> test_lecteurs-Ecrivains.csv
 
 for ((i=0;i<5;i++))
 do 
-    for ((j=2; j<=$nbthread; j++))
+    for j in 2 4 8 16 32 64
     do
         Ecrivains=$(($j / $two))
         Lecteurs=$(($j - $Ecrivains))

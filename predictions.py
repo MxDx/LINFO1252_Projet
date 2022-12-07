@@ -67,6 +67,7 @@ if __name__ == '__main__':
     NBTHREAD = 64
 
     philosophe_raw = pd.read_csv("result_ingi/test_philosophe.csv", sep=';')
+
     philosophe_raw = philosophe_raw.iloc[:,:-1]
     philosophe = philosophe_raw.mean().to_frame(name="mean")
     philosophe['nb_thread'] = range(1,65)

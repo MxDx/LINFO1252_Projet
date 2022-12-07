@@ -5,7 +5,8 @@ INCLUDE_HEADERS_DIRECTORY=-Iheaders
 SRC=src/*.c src/attente_active/*.c src/Posix/*.c
 TST=test/*.c
 TAS=attente_active/*.c
-OBJ=stack.o test-and-test-and-set.o
+OBJ=stack.o 
+AA=test-and-test-and-set.o semaphore.o
 
 main:
 	@make clean
@@ -17,17 +18,28 @@ main:
 	@$(CC) -o philosophe.exe philosophe.o $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
 	@echo "\n Successfully compiled philosophe.c. \n"
 
+	@$(CC) -o philosophe_AA.exe philosophe_AA.o $(AA) $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
+	@echo "\n Successfully compiled philosophe_AA.c. \n"
+
 	@$(CC) -o producteurs-consomateur.exe $(OBJ) producteurs-consomateur.o $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
 	@echo "\n Successfully compiled producteurs-consomateur.c. \n"
 
+	@$(CC) -o producteurs-consomateur_AA.exe $(OBJ) producteurs-consomateur_AA.o $(AA) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
+	@echo "\n Successfully compiled producteurs-consomateur_AA.c. \n"
+
 	@$(CC) -o lecteurs-ecrivains.exe lecteurs-ecrivains.o $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
 	@echo "\n Successfully compiled lecteurs-ecrivains.c. \n"
+
+	@$(CC) -o lecteurs-ecrivains_AA.exe lecteurs-ecrivains_AA.o $(AA) $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
+	@echo "\n Successfully compiled lecteurs-ecrivains_AA.c. \n"
 
 	@$(CC) -o test_tas.exe test_tas.o test-and-set.o $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
 	@echo "\n Successfully compiled test_tas.c. \n"
 
 	@$(CC) -o test_tatas.exe test_tatas.o test-and-test-and-set.o $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
 	@echo "\n Successfully compiled test_tatas.c. \n"
+
+	
 
 
 

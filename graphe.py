@@ -5,6 +5,8 @@ import pandas as pd
 if __name__ == '__main__':
     NBTHREAD = 64
     
+    #Philosophes
+    
     print("="*90)
     print("Graph for philosophe implementation")
     print("="*90)
@@ -26,7 +28,33 @@ if __name__ == '__main__':
     print(philosophe_new.head())
     plt.show()
     
-    """time_phil = prediction_log(philosophe, NBTHREAD, 1)"""
+    
+    #Philosophes AA
+    
+    print("="*90)
+    print("Graph for philosophe_AA implementation")
+    print("="*90)
+
+    philosophe_AA = pd.read_csv("test_philosophe_AA.csv", sep=';')
+
+    philosophe_AA = philosophe_AA.iloc[:,:-1]
+    dic = {'1 threads': 1,'2 threads': 2,'4 threads': 4,'8 threads': 8,'16 threads': 16,'32 threads': 32,'64 threads': 64}
+    philosophe_AA = philosophe_AA.rename(columns=dic)
+
+    philosophe_AA_new = philosophe_AA.mean().to_frame(name="mean")
+    philosophe_AA_new["std"] = philosophe_AA.std().to_list()
+    # philosophe_AA_new["nb_thread"] = [1,2,4,8,16,32,64]
+    
+    fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(15, 8))
+    philosophe_AA_new.plot(y='mean', ax=axes[0], kind='bar', title='Mean')
+    philosophe_AA_new.plot(y='std', ax=axes[1],kind='bar', title="Standard deviation", color='orange')
+    
+    print(philosophe_AA_new.head())
+    plt.show()
+    
+    
+    
+    #Producteurs-Consomateurs =====================================================================================================================================
     
     print("="*90)
     print("Graph for producteurs-consomateurs implementation")
@@ -45,7 +73,29 @@ if __name__ == '__main__':
     plt.show()
     
     
-    """time_prod_cons = prediction_log(producteurs_consomateurs, NBTHREAD, 2)"""
+    #Producteurs-Consomateurs AA =====================================================================================================================================
+    
+    
+    print("="*90)
+    print("Graph for producteurs-consomateurs_AA implementation")
+    print("="*90)
+    
+    producteurs_consomateurs_AA = pd.read_csv("test_producteurs_consommateur.csv", sep=';')
+    producteurs_consomateurs_AA = producteurs_consomateurs_AA.iloc[:,:-1]
+    producteurs_consomateurs_AA_new = producteurs_consomateurs_AA.mean().to_frame(name="mean")
+    producteurs_consomateurs_AA_new['std'] = producteurs_consomateurs_AA.std().to_list()
+
+    fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(15, 8))
+    producteurs_consomateurs_AA_new.plot(y='mean', ax=axes[0], kind='bar', title='Mean')
+    producteurs_consomateurs_AA_new.plot(y='std', ax=axes[1],kind='bar', title="Standard deviation", color='orange')
+    
+    print(producteurs_consomateurs_AA_new.head())
+    plt.show()
+
+    
+    
+    
+    #Lecteurs-écrivains ================================================================================================================================================
     
     print("="*90)
     print("Graph for lecteurs-ecrivains implementation")
@@ -65,9 +115,29 @@ if __name__ == '__main__':
 
     
     
-    """"time_lect_ecriv = prediction_log(lecteurs_ecrivains, NBTHREAD, 2)"""
+    #Lecteurs-écrivains AA ================================================================================================================================================
+    
+    print("="*90)
+    print("Graph for lecteurs-ecrivains_AA implementation")
+    print("="*90)
+    
+    lecteurs_ecrivains_AA = pd.read_csv("test_lecteurs-Ecrivains.csv", sep=';')
+    lecteurs_ecrivains_AA = lecteurs_ecrivains_AA.iloc[:,:-1]
+    lecteurs_ecrivains_AA_new = lecteurs_ecrivains_AA.mean().to_frame(name="mean")
+    lecteurs_ecrivains_AA_new['std'] = lecteurs_ecrivains_AA.std().to_list()
+
+    fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(15, 8))
+    lecteurs_ecrivains_AA_new.plot(y='mean', ax=axes[0], kind='bar', title='Mean')
+    lecteurs_ecrivains_AA_new.plot(y='std', ax=axes[1],kind='bar', title="Standard deviation", color='orange')
+
+    print(lecteurs_ecrivains_AA_new.head())
+    plt.show()
+    
+    
     
     #TAS
+    
+    
     
     print("="*90)
     print("Graph for tas implementation")
@@ -86,7 +156,11 @@ if __name__ == '__main__':
     print(tas_new.head())
     plt.show()
     
+    
+    
     #TATAS
+    
+    
     
     print("="*90)
     print("Graph for tatas implementation")
@@ -106,7 +180,10 @@ if __name__ == '__main__':
     plt.show()
     
     
+    
     #Comparaison
+    
+    
     
     comp_tastatas = tas_new.rename(columns={'mean':'mean_tas', 'std': 'std_tas'})
     comp_tastatas['mean_tatas'] = tatas_new['mean']

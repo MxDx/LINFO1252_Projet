@@ -6,7 +6,7 @@
 #include "../../headers/test-and-test-and-set.h"
 
 pthread_t *phil;
-pthread_mutex_t *baguette;
+int *baguette;
 int *nb_phil;
 
 void *philosophe(void *arg)
@@ -28,16 +28,16 @@ void *philosophe(void *arg)
     // philosophe pense
     if (left < right)
     {
-      pthread_mutex_lock(&baguette[left]);
-      pthread_mutex_lock(&baguette[right]);
+      lock(&baguette[left]);
+      lock(&baguette[right]);
     }
     else
     {
-      pthread_mutex_lock(&baguette[right]);
-      pthread_mutex_lock(&baguette[left]);
+      lock(&baguette[right]);
+      lock(&baguette[left]);
     }
-    pthread_mutex_unlock(&baguette[left]);
-    pthread_mutex_unlock(&baguette[right]);
+    unlock(&baguette[left]);
+    unlock(&baguette[right]);
     i++;
   }
   return (NULL);
@@ -57,20 +57,20 @@ int main(int argc, char *argv[])
 
   if (*nb_phil == 1)
   {
-    baguette = (pthread_mutex_t *)malloc((*nb_phil + 1) * sizeof(pthread_mutex_t));
+    baguette = (int*)malloc((*nb_phil + 1) * sizeof(int));
 
     for (int i = 0; i < (*nb_phil + 1); i++)
     {
-      pthread_mutex_init(&baguette[i], NULL);
+      baguette[i]=0;
     }
   }
   else
   {
-    baguette = (pthread_mutex_t *)malloc(*nb_phil * sizeof(pthread_mutex_t));
+    baguette = (int *)malloc(*nb_phil * sizeof(int));
 
     for (int i = 0; i < *nb_phil; i++)
     {
-      pthread_mutex_init(&baguette[i], NULL);
+      baguette[i]=0;
     }
   }
 

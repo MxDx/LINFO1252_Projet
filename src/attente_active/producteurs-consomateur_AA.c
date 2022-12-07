@@ -10,7 +10,7 @@ sem_s* buffer_cons;
 sem_s* buffer_prod;
 stack_t* stack;
 
-pthread_mutex_t stack_mutex;
+int stack_TATAS;
 
 
 void* productor(void* args) {
@@ -18,9 +18,9 @@ void* productor(void* args) {
     int* times_to_run = (int*) args;
     while (counter < *times_to_run) {
         sem_wait(buffer_prod);
-        pthread_mutex_lock(&stack_mutex);
+        lock(&stack_TATAS);
         push(stack, (void*) 1);
-        pthread_mutex_unlock(&stack_mutex);
+        unlock(&stack_TATAS);
         for (int i = 0; i < 100000; i++) {
             // pass
         }
@@ -38,9 +38,9 @@ void* consumer(void* args) {
     while (counter < *times_to_run) {
         sem_wait(buffer_cons);
 
-        pthread_mutex_lock(&stack_mutex);
+        lock(&stack_TATAS);
         int* res = (int*) pop(stack);
-        pthread_mutex_unlock(&stack_mutex);
+        unlock(&stack_TATAS);
 
         for (int i = 0; i < 100000; i++) {
             // pass
@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
     int* nb_thread_cons = (int*) malloc(sizeof(int));
 
     stack = (stack_t*) malloc(sizeof(stack_t));
-    pthread_mutex_init(&stack_mutex, NULL);
+    stack_TATAS=0;
     buffer_prod = (sem_s*) malloc(sizeof(sem_s));
     buffer_cons = (sem_s*) malloc(sizeof(sem_s)); 
 

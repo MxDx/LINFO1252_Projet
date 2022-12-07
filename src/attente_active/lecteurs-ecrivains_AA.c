@@ -8,8 +8,8 @@
 On favorise les writer ici
 */
 
-pthread_mutex_t m_rcount;
-pthread_mutex_t m_wcount;
+int m_rcount;
+int m_wcount;
 
 sem_s wsem; // accès à la wsem
 sem_s rsem; // bloque les lecteurs
@@ -23,13 +23,13 @@ void* writer(void* param) {
     int* times_to_run = (int*) param;
     int counter = 0;
     while(counter < *times_to_run) {
-        pthread_mutex_lock(&m_wcount);
+        lock(&m_wcount);
         writecount++;
         if(writecount == 1) {
             // Si première écrivain --> On bloque les prochains reader d'arriver
             sem_wait(&rsem); 
         }
-        pthread_mutex_unlock(&m_wcount);        
+        unlock(&m_wcount);        
 
         sem_wait(&wsem); // On attend maintenant que tous les reader on finis
 
@@ -40,12 +40,12 @@ void* writer(void* param) {
 
         sem_post(&wsem);
 
-        pthread_mutex_lock(&m_wcount);
+        lock(&m_wcount);
         writecount--;
         if(writecount == 0) {
             sem_post(&rsem);
         } 
-        pthread_mutex_unlock(&m_wcount);
+        unlock(&m_wcount);
         counter++;
     }
     return NULL;
@@ -57,26 +57,26 @@ void* reader(void* param) {
     int counter = 0;
     while(counter < *times_to_run){
         sem_wait(&rsem); // Permet de bloquer les reader avec le writer
-        pthread_mutex_lock(&m_rcount);
+        lock(&m_rcount);
         // section critique
         readcount++;
         if (readcount==1) { // arrivée du premier reader
             sem_wait(&wsem);
         }
-        pthread_mutex_unlock(&m_rcount);
+        unlock(&m_rcount);
         sem_post(&rsem); // Libère la sem quand il a finis
 
         for(int i=0;i<100000;i++){
             //sisimulation
         } 
 
-        pthread_mutex_lock(&m_rcount);
+        lock(&m_rcount);
         // section critique
         readcount--;
         if(readcount==0) { // départ du dernier reader
             sem_post(&wsem);
         }
-        pthread_mutex_unlock(&m_rcount);
+        unlock(&m_rcount);
         counter++;
     }
     return NULL;

@@ -21,6 +21,30 @@ done
 
 cat test_philosophe.csv
 
+#Philosophe AA
+
+for n in 1 2 4 8 16 32
+do 
+    echo -n "$n threads;" >> test_philosophe_AA.csv
+done
+echo  "$nbthread threads;" >> test_philosophe_AA.csv
+
+for ((i=0;i<5;i++))
+do 
+    for j in 1 2 4 8 16 32 64
+    do
+        echo -n $(/usr/bin/time -f "%e" ./philosophe_AA.exe $j 2>&1) >> test_philosophe_AA.csv 
+        echo -n ";" >> test_philosophe_AA.csv   
+    done
+    echo "" >> test_philosophe_AA.csv
+done
+
+cat test_philosophe_AA.csv
+
+
+#=============================================================================================================================================
+
+
 #Producteur Consommateur
 for n in 2 4 8 16 32
 do 
@@ -44,6 +68,33 @@ done
 
 cat test_producteurs_consommateur.csv
 
+#Producteur Consommateur AA
+for n in 2 4 8 16 32
+do 
+    echo -n "$n threads;" >> test_producteurs_consommateur_AA.csv
+done
+echo  "$nbthread threads;" >> test_producteurs_consommateur_AA.csv
+
+for ((i=0;i<5;i++))
+do 
+    for j in 2 4 8 16 32 64
+    do
+        #Create a variable prod wich equals to j / 2
+        prod=$(($j / $two))
+        #Create a variable cons wich equals to j - prod
+        cons=$(($j - $prod))
+        echo -n $(/usr/bin/time -f "%e" ./producteurs-consomateur_AA.exe $prod $cons 2>&1) >> test_producteurs_consommateur_AA.csv 
+        echo -n ";" >> test_producteurs_consommateur_AA.csv   
+    done
+    echo "" >> test_producteurs_consommateur_AA.csv
+done
+
+cat test_producteurs_consommateur_AA.csv
+
+
+#=============================================================================================================================================
+
+
 #Lecteurs Ecrivains
 for n in 2 4 8 16 32
 do 
@@ -64,6 +115,31 @@ do
 done
 
 cat test_lecteurs-Ecrivains.csv
+
+#Lecteurs Ecrivains AA
+for n in 2 4 8 16 32
+do 
+    echo -n "$n threads;" >> test_lecteurs-Ecrivains_AA.csv
+done
+echo  "$nbthread threads;" >> test_lecteurs-Ecrivains_AA.csv
+
+for ((i=0;i<5;i++))
+do 
+    for j in 2 4 8 16 32 64
+    do
+        Ecrivains=$(($j / $two))
+        Lecteurs=$(($j - $Ecrivains))
+        echo -n $(/usr/bin/time -f "%e" ./lecteurs-ecrivains_AA.exe $Lecteurs $Ecrivains 2>&1) >> test_lecteurs-Ecrivains_AA.csv 
+        echo -n ";" >> test_lecteurs-Ecrivains_AA.csv   
+    done
+    echo "" >> test_lecteurs-Ecrivains_AA.csv
+done
+
+cat test_lecteurs-Ecrivains_AA.csv
+
+
+#================================================================================================================================================
+
 
 #TAS
 

@@ -4,14 +4,14 @@ int lock(int *tatas, int *vmax) {
     int ret;
     // Inline assembly that sets the value of ret to the current value of tatas,
     // and sets the value of tatas to 1.
-    int i=1;
+    int i=2;
     while (*tatas == 1){
         if(i^2 >*vmax){
-            sleep(*vmax);
+            usleep(*vmax);
 
         }
         else{
-            sleep(i^2);
+            usleep(i^2);
             i++;
         }
     }

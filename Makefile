@@ -39,9 +39,6 @@ main:
 	@$(CC) -o test_tatas.exe test_tatas.o test-and-test-and-set.o $(CFLAGS) $(LIBS) $(INCLUDE_HEADERS_DIRECTORY)
 	@echo "\n Successfully compiled test_tatas.c. \n"
 
-	
-
-
 
 clean:
 	@rm -f *.o
@@ -57,6 +54,8 @@ test:
 debug: 
 	@make clean
 	@g++ -g -c $(SRC) $(LIBS) #$(CFLAGS)
+	@g++ -g -c $(TST) $(LIBS) #$(CFLAGS)
+	@g++ -g -c $(TAS) $(LIBS) #$(CFLAGS)
 	@echo "\n Successfully compiled all source files. \n" 
 	
 	@g++ -g -o philosophe.exe philosophe.o $(CFLAGS)
@@ -64,6 +63,12 @@ debug:
 
 	@g++ -g -o producteurs-consomateur.exe $(OBJ) producteurs-consomateur.o
 	@echo "\n Successfully compiled producteurs-consomateur.c (DEBUG). \n"
+
+	@g++ -g -o producteurs-consomateur_AA.exe $(OBJ) producteurs-consomateur_AA.o $(AA) 
+	@echo "\n Successfully compiled producteurs-consomateur_AA.c (DEBUG). \n"
+
+	@g++ -g -o test_semaphore.exe $(OBJ) test_semaphore.o $(AA) 
+	@echo "\n Successfully compiled test_semaphore.c (DEBUG). \n"
 
 zip:
 	@make clean

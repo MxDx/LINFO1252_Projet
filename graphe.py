@@ -53,6 +53,15 @@ if __name__ == '__main__':
     plt.show()
     
     
+    # Comp
+    comp_philosophe = philosophe_new.rename(columns={'mean':'mean_POSIX', 'std': 'std_POSIX'})
+    comp_philosophe['mean_AA'] = philosophe_AA_new['mean']
+    comp_philosophe['std_AA'] = philosophe_AA_new['std']
+    
+    fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(15,8))
+    comp_philosophe.plot(y=['mean_POSIX', 'mean_AA'], ax=axes, kind='bar', title='Mean', grid=True)
+    plt.show()
+    
     
     #Producteurs-Consomateurs =====================================================================================================================================
     
@@ -80,7 +89,7 @@ if __name__ == '__main__':
     print("Graph for producteurs-consomateurs_AA implementation")
     print("="*90)
     
-    producteurs_consomateurs_AA = pd.read_csv("test_producteurs_consommateur.csv", sep=';')
+    producteurs_consomateurs_AA = pd.read_csv("test_producteurs_consommateur_AA.csv", sep=';')
     producteurs_consomateurs_AA = producteurs_consomateurs_AA.iloc[:,:-1]
     producteurs_consomateurs_AA_new = producteurs_consomateurs_AA.mean().to_frame(name="mean")
     producteurs_consomateurs_AA_new['std'] = producteurs_consomateurs_AA.std().to_list()
@@ -92,7 +101,14 @@ if __name__ == '__main__':
     print(producteurs_consomateurs_AA_new.head())
     plt.show()
 
+    # Comp
+    comp_producteurs_consomateurs = producteurs_consomateurs_new.rename(columns={'mean':'mean_POSIX', 'std': 'std_POSIX'})
+    comp_producteurs_consomateurs['mean_AA'] = producteurs_consomateurs_AA_new['mean']
+    comp_producteurs_consomateurs['std_AA'] = producteurs_consomateurs_AA_new['std']
     
+    fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(15,8))
+    comp_producteurs_consomateurs.plot(y=['mean_POSIX', 'mean_AA'], ax=axes, kind='bar', title='Mean', grid=True)
+    plt.show()
     
     
     #Lecteurs-écrivains ================================================================================================================================================
@@ -121,7 +137,7 @@ if __name__ == '__main__':
     print("Graph for lecteurs-ecrivains_AA implementation")
     print("="*90)
     
-    lecteurs_ecrivains_AA = pd.read_csv("test_lecteurs-Ecrivains.csv", sep=';')
+    lecteurs_ecrivains_AA = pd.read_csv("test_lecteurs-Ecrivains_AA.csv", sep=';')
     lecteurs_ecrivains_AA = lecteurs_ecrivains_AA.iloc[:,:-1]
     lecteurs_ecrivains_AA_new = lecteurs_ecrivains_AA.mean().to_frame(name="mean")
     lecteurs_ecrivains_AA_new['std'] = lecteurs_ecrivains_AA.std().to_list()
@@ -133,6 +149,14 @@ if __name__ == '__main__':
     print(lecteurs_ecrivains_AA_new.head())
     plt.show()
     
+    # comp
+    comp_lecteurs_ecrivains = lecteurs_ecrivains_new.rename(columns={'mean':'mean_POSIX', 'std': 'std_POSIX'})
+    comp_lecteurs_ecrivains['mean_AA'] = lecteurs_ecrivains_AA_new['mean']
+    comp_lecteurs_ecrivains['std_AA'] = lecteurs_ecrivains_AA_new['std']
+    
+    fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(15,8))
+    comp_lecteurs_ecrivains.plot(y=['mean_POSIX', 'mean_AA'], ax=axes, kind='bar', title='Mean', grid=True)
+    plt.show()
     
     
     #TAS
@@ -191,4 +215,7 @@ if __name__ == '__main__':
     
     fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(15,8))
     comp_tastatas.plot(y=['mean_tas', 'mean_tatas'], ax=axes, kind='bar', title='Mean', grid=True)
+    
+    
+    
     
